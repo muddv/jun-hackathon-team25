@@ -1,24 +1,40 @@
-import "./style.css";
-import typescriptLogo from "./typescript.svg";
-import viteLogo from "/vite.svg";
-import { setupCounter } from "./counter.ts";
+import {Scene, PerspectiveCamera, WebGLRenderer, BoxGeometry, MeshBasicMaterial, Mesh} from 'three'
+import { OrbitControls } from 'three/examples/jsm/Addons.js'
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`;
+let scene: Scene, camera: PerspectiveCamera, renderer: WebGLRenderer, controls: OrbitControls 
 
-setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
+let canvas = document.querySelector<HTMLDivElement>("#app")!
+
+function main() {
+  init()
+  drawGeometry()
+  animate()
+}
+
+function init() {
+  scene = new Scene()
+  camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+  renderer = new WebGLRenderer({canvas})
+  controls = new OrbitControls(camera, renderer.domElement)
+  renderer.setPixelRatio(window.devicePixelRatio)
+  renderer.setSize(window.innerWidth, window.innerHeight)
+}
+
+function drawGeometry() {
+  const geometry = new BoxGeometry(1, 1, 1)
+  const material = new MeshBasicMaterial({color: 0xf05400})
+  const cube = new Mesh(geometry, material)
+  scene.add(cube)
+  camera.position.z = 5;
+}
+
+function animate() {
+  requestAnimationFrame(animate)
+  controls.update()
+
+  renderer.render(scene, camera)
+}
+
+main()
+
+
