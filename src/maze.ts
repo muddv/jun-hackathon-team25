@@ -24,7 +24,7 @@ class MazeCell {
   visited = false
   neighbors: string[] = []
 
-  traverse(): MazeCell | number {
+  traverse(): MazeCell | -1 {
     console.log('here')
     if (!this.visited) {
       cells.delete(this.key)
@@ -44,7 +44,7 @@ class MazeCell {
       }
     }
     else {
-      return jump()
+      return -1
     }
   }
 }
@@ -59,25 +59,46 @@ export function makeMaze() {
       cells.set(key, new MazeCell(row, col))
     }
   }
-  travel()
+  let cell = getRandomCell()
+  if (cell !== -1) {
+  travel(cell)
+  }
 }
 
-function travel() {
-  let key = '00'
-  let cell: MazeCell | number = cells.get(key)!
-  do {
-    if (typeof cell !== 'number') {
-      console.log(cell.key)
-      cell = cell.traverse()
+function travel(cell: MazeCell | -1) {
+  if (cell !== -1) {
+    do {
+      if (typeof cell !== 'number') {
+        console.log(cell.key)
+        cell = cell.traverse()
+      }
+    } while (cell !== -1)
+    checkValid(stack)
+    // TODO: handle maze generation from stack 
+    let newCell = backTrack()
+    if (newCell === -1) {
+      drawMaze(stack)
+      stack = []
+      travel(getRandomCell())
+      return
     }
-  } while (cell !== -1)
-  console.log('done')
-  console.log(stack)
-  console.log("remains: ", cell)
-  checkValid(stack)
+    travel(newCell)
+  }
 }
 
-function jump(): number | MazeCell {
+function backTrack(): MazeCell | -1 {
+  for (let i = stack.length - 2; i > 0; i--) {
+    let cell = cells.get(generateKey(stack[i][0], stack[i][1]))
+    let newCell
+    if (cell) newCell = cell!.traverse()
+    if (newCell && typeof newCell !== 'number') {
+      return newCell
+    }
+  }
+  return -1
+}
+
+function getRandomCell(): -1 | MazeCell {
   if (cells.size < 1) return -1
   return getRandomMapItem(cells)
 }
@@ -103,4 +124,33 @@ function checkValid(arr: number[][]) {
     }
   }
   console.log("Arr valid")
+}
+
+function drawMaze(stack: number[][]) {
+  const canvas = document.querySelector<HTMLCanvasElement>("#hehe")!
+  const ctx = canvas.getContext("2d")!
+  let boxWidth = 200
+  let boxHeight = 200
+  let boxPadding = 10
+  let move = 0.5
+  let tileSize = 50
+  let color = "#0f00ff"
+  
+
+
+  // squares
+  // if square at stack[i] is connected, paint it
+    ctx.beginPath();
+
+    for (let i = 0; i < stack.length - 1; i++) {
+      ctx.beginPath()
+      ctx.moveTo(stack[i][0] * 100, stack[i][1] * 100)
+      ctx.lineTo(stack[i + 1][0] * 100, stack[i + 1][1] * 100)
+      ctx.stroke()
+      
+  }
+
+   ctx.strokeStyle = color
+   ctx.stroke()
+
 }
