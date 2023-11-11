@@ -1,13 +1,16 @@
+import { makeMaze } from "./maze";
+
 const canvas = document.querySelector<HTMLCanvasElement>("#hehe")!
 const ctx = canvas.getContext("2d")!
 
 function main() {
   drawGrid();
+  makeMaze()
 }
 
 function drawGrid() {
-  let boxWidth = 800
-  let boxHeight = 800
+  let boxWidth = 200
+  let boxHeight = 200
   let boxPadding = 10
   let move = 0.5
   let tileSize = 50
@@ -24,5 +27,7 @@ function drawGrid() {
   ctx.strokeStyle = color
   ctx.stroke()
 }
+
+
 
 main()
