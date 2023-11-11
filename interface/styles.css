@@ -1,3 +1,20 @@
+@font-face {
+  font-family: 'Amatic_SC';
+  src: url(fonts/Amatic_SC/AmaticSC-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Amatic_SC';
+  src: url(fonts/Amatic_SC/AmaticSC-Bold.ttf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Kablammo';
+  src: url(fonts/Kablammo/Kablammo-Regular-VariableFont_MORF.ttf);
+}
+
+
 body {
   box-sizing: border-box;
   width: 100vw;
@@ -10,6 +27,30 @@ body {
   line-height: 1.5;
   background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }
+
+nav {
+display: flex;
+flex-direction: row;
+}
+
+.title {
+font-family: 'Kablammo';
+font-size: 6rem;
+color: #014e95;
+
+text-align: justify;
+
+display: flex;
+margin-left: auto;
+order: 2;
+
+flex-shrink: 0;
+flex-wrap: wrap;
+
+text-shadow: 1px 1px 2px black;
+
+}
+
 
 a {
   color: inherit;
@@ -26,10 +67,12 @@ a {
 
   width: 100px;
   height: 100px;
+
+  order: 2;
 }
 
 h2 {
-  color: #d6e2ff;;
+  color: #d6e2ff;
   font-size: 1.5em;
   text-align: center;
 }
@@ -46,7 +89,7 @@ h2 {
 .button-content {
   width: 50%;
   margin: auto;
-  background-color: #263C91;
+  background-color: #0067C5;
   border-radius: 12px;
   opacity: 80%;
 
@@ -65,3 +108,13 @@ h2 {
 [data-button="rules"]:focus~.button-content [data-button-content="rules"] {
   display: block;
 }
+
+
+/* .game-placeholder {
+  background-color: #0067C5;
+  width: 900px;
+  height: 900px;
+  display: block;
+
+  margin: 50px auto;
+} */
