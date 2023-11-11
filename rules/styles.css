@@ -1,0 +1,67 @@
+body {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 50px;
+  color: #e6ebf1;;
+  font-size: 20px;
+  font-family: Raleway, sans-serif;
+  line-height: 1.5;
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+a {
+  color: inherit;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+
+  display: block;
+  background-color: none;
+  white-space: nowrap;
+  background-image: url(img/question-mark.png);
+  background-size: 100%;
+  border: none;
+
+  width: 100px;
+  height: 100px;
+}
+
+h2 {
+  color: #d6e2ff;;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.button {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.button-name {
+  white-space: nowrap;
+}
+
+.button-content {
+  width: 50%;
+  margin: auto;
+  background-color: #263C91;
+  border-radius: 12px;
+  opacity: 80%;
+
+}
+
+.button-content-item {
+  display: none;
+  padding: 20px;
+
+}
+
+[data-button="rules"]:hover~.button-content [data-button-content="rules"] {
+  display: block;
+}
+
+[data-button="rules"]:focus~.button-content [data-button-content="rules"] {
+  display: block;
+}
