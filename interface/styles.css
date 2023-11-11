@@ -51,16 +51,13 @@ text-shadow: 1px 1px 2px black;
 
 }
 
-
-a {
+.button-item {
   color: inherit;
   padding: 20px;
   text-align: center;
-  text-decoration: none;
 
   display: block;
   background-color: none;
-  white-space: nowrap;
   background-image: url(img/question-mark.png);
   background-size: 100%;
   border: none;
@@ -73,35 +70,47 @@ a {
 
 h2 {
   color: #d6e2ff;
-  font-size: 1.5em;
+  font-size: 2em;
   text-align: center;
+
+  font-weight: bold;
+
+  text-align: center;
+  line-height: normal;
+
+  padding: auto;
 }
+
 
 .button {
   width: 100%;
   margin: 0 auto;
-}
 
-.button-name {
-  white-space: nowrap;
+  font-family: 'Amatic_SC';
 }
 
 .button-content {
   width: 50%;
+
   margin: auto;
-  background-color: #0067C5;
-  border-radius: 12px;
-  opacity: 80%;
+
+  background-color: #014f98;
+  border-radius: 45px;
+  opacity: 1;
 
 }
 
 .button-content-item {
   display: none;
-  padding: 20px;
+  padding: 30px;
+
+  position: relative;
+
+  z-index: 20;
 
 }
 
-[data-button="rules"]:hover~.button-content [data-button-content="rules"] {
+[data-button="rules"]:enabled~.button-content [data-button-content="rules"] {
   display: block;
 }
 
@@ -110,11 +119,166 @@ h2 {
 }
 
 
-/* .game-placeholder {
+.game-placeholder {
   background-color: #0067C5;
   width: 900px;
   height: 900px;
+  display: flex;
+  margin: 100px auto;
+
+  position: relative;
+
+  z-index: 10;
+
+}
+
+.footer {
+  height: 200px;
+  display: flex;
+
+  margin-bottom: 20px;
+
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: #d6e2ff;
+}
+
+a:focus, a:hover {
+  color: #fefefe;
+}
+
+
+.credits {
+  color: #d6e2ff;
+  font-family: "Amatic_SC";
+  font-size: 2.5em;
+  opacity: 100%;
+
+  text-align: justify;
+}
+
+
+#game-end {
+  font-family: 'Amatic_SC';
   display: block;
 
+  flex-direction: row;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 45px;
+  opacity: 0.8;
+  background: #0067C5;
+
+  font-size: 40px;
+  box-sizing: border-box;
+
+  box-shadow: 3px 3px #003b71, -1em 0 .4em #003b71;
+}
+
+.victory-button, .defeat-button {
+  display: block;
+  width: 311px;
+  height: 101px;
+  border-radius: 45px;
+  background: #014f98;
+  color:#d6e2ff;
+
+  box-sizing: border-box;
+
+  padding: auto;
+  margin: auto;
+
+  font-family: 'Amatic_SC';
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center;
+  line-height: normal;
+
+  position: relative;
+  top: 150px;
+
+  transition-duration: 0.4s;
+
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.victory-button:hover, .defeat-button:hover  {
+  background-color: #014e95;
+  color: white;
+}
+
+#victory-title, #defeat-title {
+
+  display: block;
   margin: 50px auto;
-} */
+
+  position: relative;
+  top: 150px;
+
+  font-size: 100px;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
+  line-height: normal;
+
+}
+
+.start-over {
+  display: block;
+  width: 311px;
+  height: 101px;
+  border-radius: 45px;
+  background: #014f98;
+  color:#d6e2ff;
+
+  box-sizing: border-box;
+
+  padding: auto;
+  margin: auto;
+
+  font-family: 'Amatic_SC';
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+  line-height: normal;
+
+  transition-duration: 0.4s;
+
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.game-level {
+  display: block;
+  width: 311px;
+  height: 101px;
+  border-radius: 45px;
+  background: #014f98;
+  color:#d6e2ff;
+
+  box-sizing: border-box;
+
+  padding: auto;
+  margin: auto;
+
+  font-family: 'Amatic_SC';
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+  line-height: normal;
+
+  transition-duration: 0.4s;
+
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.levels {
+
+  margin: 50px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+
+}

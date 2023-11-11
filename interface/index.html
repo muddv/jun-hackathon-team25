@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name=”viewport” content=”width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0″ />
     <link rel="stylesheet" href="styles.css">
     <script src="/src/main.js"></script>
 
@@ -11,22 +12,47 @@
 </head>
 
 <body>
-
   <nav>
     <section class="title">Лабиринтус</section>
+
     <section class="button">
-      <a class="button-item button-name" data-button="rules" href="#"></a>
+      <a class="button-item" data-button="rules" href="#"></a>
       <div class="button-content">
         <div class="button-content-item" data-button-content="rules">
           <h2>Правила игры:</h2>
           <p>В этой игре вам нужно помочь родителю найти путь к своему ребенку.</p>
-          <p>Используйте клавиши &#8678; &#8679; &#8681; &#8680; на своей клавиатуре,
-              чтобы перемещаться по лабиринту.
-          </p>
+          <p>Выберите уровень сложности и используйте клавиши <br> &#8678; &#8679; &#8681; &#8680; на своей клавиатуре,
+          чтобы перемещаться по лабиринту.</p>
         </div>
   </nav>
 
-  <div class="game-placeholder"></div>
+<div class="levels">
+
+<button class="game-level">Легко</button>
+<button class="game-level">Нормально</button>
+<button class="game-level">Тяжело</button>
+
+</div>
+
+  <div class="game-placeholder">
+    <img src="img/maze-placeholder.jpeg">
+  </div>
+
+  <div>
+    <button class="start-over">начать заново</button>
+  </div>
+
+
+  <footer class="footer">
+    <p class="credits">Этот сайт был разработан <a href="#">@Мишей</a>, <a href="#">@Катей</a> и <a href="#">@Ильёй</a> на
+    <a href="https://jun-hackaton-landing.vercel.app">
+    благотворительном хакатоне для джуниоров</a> от
+    <a href="https://t.me/natti_jun_front_chat">чата джунов Наташи Давыдовой</a>
+    и <a href="">НКО "Найди семью"</a>
+  </p>
+
+
+</footer>
 
 </body>
 </html>
