@@ -20,10 +20,9 @@ class MazeCell {
     this.visited = false
     this.walls = { T: true, B: true, L: true, R: true }
     this.color =  markedColor
-    this.isPlayer = false
     this.isGoal = false
   }
-  x; y; visited; walls; color; isPlayer; isGoal
+  x; y; visited; walls; color; isGoal
 
   draw() {
     let x = (this.x * size) / cols
@@ -179,36 +178,51 @@ class Player {
     this.x = x
     this.y = y
     this.color = playerColor
-    this.cell = grid[this.x][this.y]
     this.draw()
+    this.passed = []
   }
-  x; y; color; cell 
+  x; y; color;  passed: MazeCell[]
   
   draw() {
-    this.cell.color = this.color 
-    this.cell.draw()
+    let cell = grid[this.x][this.y]
+    cell.color = this.color 
+    cell.draw()
+  }
+
+  restart() {
+    let cell = grid[this.x][this.y]
+    this.passed.forEach(c => {
+      c.color = markedColor
+      c.draw()
+    })
+    cell.color = markedColor
+    cell.draw()
+    this.x = 0
+    this.y = 0
+    grid[0][0].color = playerColor
   }
 
   move(direction: Directions) {
+    let cell = grid[this.x][this.y]
     let movement: Vector2 = {x: 0, y: 0}
     switch(direction) {
       case(Directions.T):
-        if (!this.cell.walls.T && this.cell.y > 0) {
+        if (!cell.walls.T && cell.y > 0) {
           movement.y--
         }
         break
       case(Directions.B):
-        if (!this.cell.walls.B && this.cell.y < cols) {
+        if (!cell.walls.B && cell.y < cols) {
           movement.y++
         }
         break
       case(Directions.R):
-        if (!this.cell.walls.R && this.cell.x < rows) {
+        if (!cell.walls.R &&cell.x < rows) {
           movement.x++
         }
         break
       case(Directions.L):
-        if (!this.cell.walls.L && this.cell.x > 0) {
+        if (!cell.walls.L && cell.x > 0) {
           movement.x--
         }
         break
@@ -217,10 +231,10 @@ class Player {
     }
     this.x += movement.x
     this.y += movement.y
-    this.cell.color = cellColor
-    this.cell.draw()
-    this.cell = grid[this.x][this.y]
-    this.cell.isPlayer = true
+    cell.color = cellColor
+    this.passed.push(cell)
+    cell.draw()
+    cell = grid[this.x][this.y]
     this.draw()
   }
 }
@@ -243,6 +257,11 @@ function gameLoop() {
 
     if (e.key === 'd' || e.key === 'D') {
       p.move(Directions.R)
+    }
+
+    if (e.key === 'r') {
+      console.log('rrr')
+      p.restart()
     }
 
   })
