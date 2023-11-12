@@ -82,7 +82,7 @@ class MazeCell {
   }
 
   mark() {
-    const markedSize = size / cols - 3
+    const markedSize = size / cols
     let row = this.x * size / cols + 1
     let col = this.y * size / cols + 1
     ctx.fillStyle = markedColor
