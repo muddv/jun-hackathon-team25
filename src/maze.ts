@@ -246,7 +246,7 @@ function gameLoop() {
     }
 
   })
-  let quit = false 
+  // let quit = false 
   // while (!quit){ }
 }
 
