@@ -8,7 +8,7 @@ const rows = 50
 const cols = 50
 const grid: MazeCell[][] = []
 const stack: MazeCell[] = []
-let goal
+let goal: MazeCell
 
 const markedColor = "#FF00F0"
 const passedColor = "#FFF0F0"
