@@ -106,7 +106,6 @@ a:focus, a:hover {
   font-size: 40px;
   box-sizing: border-box;
 
-  box-shadow: 3px 3px #003b71, -1em 0 .4em #003b71;
 }
 
 .victory-button, .defeat-button {
@@ -133,7 +132,6 @@ a:focus, a:hover {
 
   transition-duration: 0.4s;
 
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .victory-button:hover, .defeat-button:hover  {
