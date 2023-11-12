@@ -1,14 +1,14 @@
-const canvas = document.querySelector<HTMLCanvasElement>("#hehe")!
-const ctx = canvas.getContext("2d")!
+const canvas = document.querySelector("#hehe")
+const ctx = canvas.getContext("2d")
 
 function main() {
   drawGrid();
 }
 
 function drawGrid() {
-  let boxWidth = 800
-  let boxHeight = 800
-  let boxPadding = 10
+  let boxWidth = 600
+  let boxHeight = 600
+  let boxPadding = 100
   let move = 0.5
   let tileSize = 50
   let color = "0x000000"
