@@ -1,16 +1,18 @@
-const canvas = document.querySelector<HTMLCanvasElement>("#can")!
+const canvas = document.querySelector<HTMLCanvasElement>("#game-window")!
 canvas.style.background = "black"
 console.log(canvas)
 export const ctx = canvas.getContext('2d')!
 
-const size = 800
+const size = 900
 const rows = 50
 const cols = 50
 const grid: MazeCell[][] = []
 const stack: MazeCell[] = []
+let goal
 
 const markedColor = "#FF00F0"
 const passedColor = "#FFF0F0"
+const finishCellColor = "#FFFF00"
 const cellColor = "#009900"
 const playerColor = "#8F0000"
 
@@ -20,7 +22,7 @@ class MazeCell {
     this.y = y
     this.visited = false
     this.walls = { T: true, B: true, L: true, R: true }
-    this.color = markedColor
+    this.color =  x === (cols - 1) && y === (rows - 1) ? finishCellColor : markedColor
     this.isGoal = false
   }
   x; y; visited; walls; color; isGoal
@@ -128,11 +130,12 @@ function generateGrid() {
     grid.push(row)
   }
   current = grid[0][0]
+  goal = grid[rows - 1][cols -1]
+  goal.mark()
 }
 
 function traverseGrid() {
   current.visited = true
-
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
       grid[i][j].draw()
@@ -204,8 +207,6 @@ class Player {
     this.draw()
   }
 
-
-
   move(direction: Directions) {
     let cell = grid[this.x][this.y]
     let movement: Vector2 = { x: 0, y: 0 }
@@ -240,6 +241,11 @@ class Player {
     cell.mark()
     cell = grid[this.x][this.y]
     this.draw()
+    if (this.x === goal.x && this.y === goal.y) win()
+    
+  }
+  isFinished(): boolean {
+    return this.x === (cols - 1) && this.y === (rows - 1)
   }
 }
 
@@ -273,6 +279,12 @@ function gameLoop() {
   // let quit = false 
   // while (!quit){ }
 }
+
+function win() {
+      alert("WIN!!!")
+      // TODO REDIRECT TO WIN PAGE
+      return
+    }
 
 gameLoop()
 

@@ -279,7 +279,6 @@ function gameLoop() {
     }
 
     if (e.key === 'r') {
-      console.log('rrr')
       p.restart()
     }
 
