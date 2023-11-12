@@ -3,6 +3,31 @@ const ctx = canvas.getContext("2d")!
 
 function main() {
   drawGrid();
+  registerPopUP();
+}
+
+function registerPopUP() {
+  const key = "KeyC"
+  const modal =  document.querySelector<HTMLDetailsElement>(".rules-modal details")
+  if (!modal) {
+    return
+  }
+
+  document.addEventListener("keydown", (ev) => {
+    if (ev.code !== key) {
+      return
+    }
+
+    modal.open = true
+  })
+
+  document.addEventListener("keyup", (ev) => {
+    if (ev.code !== key) {
+      return
+    }
+
+    modal.open = false
+  })
 }
 
 function drawGrid() {
