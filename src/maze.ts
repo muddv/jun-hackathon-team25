@@ -4,8 +4,8 @@ console.log(canvas)
 const ctx = canvas.getContext('2d')!
 
 const size = 600
-const rows = 10
-const cols = 10
+const rows = 50
+const cols = 50
 const grid: MazeCell[][] = []
 const stack: MazeCell[] = []
 
@@ -114,7 +114,6 @@ class MazeCell {
 let current: MazeCell
 function generateGrid() {
   // insert into Map
-  let rows = 10
   for (let x = 0; x < rows; x++) {
     let row = []
     for (let y = 0; y < cols; y++) {
