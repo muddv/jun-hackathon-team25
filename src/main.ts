@@ -262,19 +262,25 @@ function gameLoop() {
       return
     }
 
-    if (e.key === 'w' || e.key === 'W') {
+//     ArrowDown
+// VM304:1 ArrowRight
+// VM304:1 ArrowDown
+// VM304:1 ArrowLeft
+// VM304:1 ArrowUp
+
+    if (e.key === 'w' || e.key === 'ArrowUp') {
       p.move(Directions.T)
     }
 
-    if (e.key === 's' || e.key === 'S') {
+    if (e.key === 's' || e.key === 'ArrowDown') {
       p.move(Directions.B)
     }
 
-    if (e.key === 'a' || e.key === 'A') {
+    if (e.key === 'a' || e.key === 'ArrowLeft') {
       p.move(Directions.L)
     }
 
-    if (e.key === 'd' || e.key === 'D') {
+    if (e.key === 'd' || e.key === 'ArrowRight') {
       p.move(Directions.R)
     }
 
