@@ -1,20 +1,18 @@
-const canvas = document.querySelector<HTMLCanvasElement>("#game-window")!
-
+const canvas = document.querySelector<HTMLCanvasElement>("#can")!
+canvas.style.background = "black"
+console.log(canvas)
 export const ctx = canvas.getContext('2d')!
 
-const size = canvas.width = canvas.height = 500
-const rows = 5
-const cols = 5
-let grid: MazeCell[][] = []
+const size = 800
+const rows = 50
+const cols = 50
+const grid: MazeCell[][] = []
 const stack: MazeCell[] = []
 
-const markedColor = "#ffffff"
-const cellColor = "#00FF00"
-const playerColor = "#FF0000"
-const finishCellColor = "#00FF00"
-let current: MazeCell
-
-let p: Player
+const markedColor = "#FF00F0"
+const passedColor = "#FFF0F0"
+const cellColor = "#009900"
+const playerColor = "#8F0000"
 
 class MazeCell {
   constructor(x: number, y: number) {
@@ -22,14 +20,14 @@ class MazeCell {
     this.y = y
     this.visited = false
     this.walls = { T: true, B: true, L: true, R: true }
-    this.color =  x == (cols - 1) && y === (rows - 1) ? finishCellColor : markedColor
+    this.color = markedColor
     this.isGoal = false
   }
   x; y; visited; walls; color; isGoal
 
   draw() {
-    let x = this.x * (size / cols)
-    let y = this.y * (size / rows)
+    let x = (this.x * size) / cols
+    let y = (this.y * size) / rows
     ctx.strokeStyle = cellColor
     // ctx.fillStyle = gridColor
     // ctx.lineWidth = 2
@@ -117,10 +115,8 @@ class MazeCell {
     }
   }
 }
-
+let current: MazeCell
 function generateGrid() {
-  grid = []
-
   // insert into Map
   for (let x = 0; x < rows; x++) {
     let row = []
@@ -157,6 +153,11 @@ function traverseGrid() {
     current = cell
     current.mark()
   }
+  if (!stack.length) { return }
+
+  window.requestAnimationFrame(() => {
+    traverseGrid()
+  })
 }
 
 function getRandomInt(max: number) {
@@ -164,23 +165,24 @@ function getRandomInt(max: number) {
   return Math.floor(Math.random() * (max + 1))
 }
 
+generateGrid()
+traverseGrid()
 
-
-enum Directions  {T, B, R, L}
+enum Directions { T, B, R, L }
 type Vector2 = {
   x: number
   y: number
 }
 
 class Player {
-  constructor(x: number, y: number)  {
+  constructor(x: number, y: number) {
     this.x = x
     this.y = y
     this.color = playerColor
     this.draw()
     this.passed = []
   }
-  x; y; color;  passed: MazeCell[]
+  x; y; color; passed: MazeCell[]
 
   draw() {
     let cell = grid[this.x][this.y]
@@ -199,69 +201,52 @@ class Player {
     this.x = 0
     this.y = 0
     grid[0][0].color = playerColor
+    this.draw()
   }
+
+
 
   move(direction: Directions) {
     let cell = grid[this.x][this.y]
-    let movement: Vector2 = {x: 0, y: 0}
-    switch(direction) {
-      case(Directions.T):
+    let movement: Vector2 = { x: 0, y: 0 }
+    switch (direction) {
+      case (Directions.T):
         if (!cell.walls.T && cell.y > 0) {
           movement.y--
         }
         break
-      case(Directions.B):
+      case (Directions.B):
         if (!cell.walls.B && cell.y < cols) {
           movement.y++
         }
         break
-      case(Directions.R):
-        if (!cell.walls.R &&cell.x < rows) {
+      case (Directions.R):
+        if (!cell.walls.R && cell.x < rows) {
           movement.x++
         }
         break
-      case(Directions.L):
+      case (Directions.L):
         if (!cell.walls.L && cell.x > 0) {
           movement.x--
         }
         break
       default:
-        console.log('def')
+        return
     }
     this.x += movement.x
     this.y += movement.y
-    cell.color = markedColor
+    cell.color = passedColor
     this.passed.push(cell)
-    cell.draw()
+    cell.mark()
     cell = grid[this.x][this.y]
     this.draw()
   }
-
-  isFinished(): boolean {
-    return this.x === (cols - 1) && this.y === (rows - 1)
-  }
 }
 
-
-function checkFinished() {
-  setTimeout(() => {
-    if (p.isFinished()) {
-      alert("WIN!!!")
-
-      // TODO REDIRECT TO WIN PAGE
-      return
-    }
-
-    checkFinished()
-  }, 500)
-}
+let p = new Player(0, 0)
 
 function gameLoop() {
   window.addEventListener("keydown", (e) => {
-    if (p.isFinished()) {
-      return
-    }
-
     if (e.key === 'w' || e.key === 'W') {
       p.move(Directions.T)
     }
@@ -283,23 +268,11 @@ function gameLoop() {
       p.restart()
     }
 
+
   })
-
-  checkFinished()
+  // let quit = false 
+  // while (!quit){ }
 }
 
-function main() {
-  generateGrid()
-
-  do {
-    traverseGrid()
-
-  } while (stack.length)
-
-  p = new Player(0, 0)
-
-  gameLoop()
-}
-
-main()
+gameLoop()
 
