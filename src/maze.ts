@@ -217,9 +217,10 @@ class Player {
     }
     this.x += movement.x
     this.y += movement.y
-
+    this.cell.color = cellColor
+    this.cell.draw()
     this.cell = grid[this.x][this.y]
-    this.cell.isPlayer == true
+    this.cell.isPlayer = true
     this.draw()
   }
 }
