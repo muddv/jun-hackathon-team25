@@ -1,20 +1,22 @@
 # команда 25
 
-[@xomnrt](https://t.me/xomnrt) - сделала то и другое
+[@xomnrt](https://t.me/xomnrt) - Верстка, дизайн, помощь с логикой в игре
 
-[@WW_ED](https://t.me/WW_ED) - сделал четвретове - пятьдесят четвертое
-
-[@dedovmu](https://t.me/dedovmu) - сделал это и это
+[@dedovmu](https://t.me/dedovmu) - построение лабиринта и отображение на canvas, логика продвижения в игре
 
 # стек
  - typescript
- - three.js
  - vite
  - pnpm
 
 + eslint, prettier, stylelint
 
 # что сделали + фичи
+- лабиринт генерируется
+
+- его можно пройти
+
+- если зайти на [сюда](https://jun-hackathon-git-maze-gen-muddv.vercel.app/?_vercel_share=eVbHrcSMZRx4AvADVR1ibQaqednaWZJm), то можно посмотреть залипательный скринсейвер его генерации и тоже его пройтии
 
 # локальный запуск
 для запуска разработческого билда:

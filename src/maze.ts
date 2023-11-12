@@ -4,8 +4,8 @@ console.log(canvas)
 export const ctx = canvas.getContext('2d')!
 
 const size = 900
-const rows = 50
-const cols = 50
+const rows = 20
+const cols = 20
 const grid: MazeCell[][] = []
 const stack: MazeCell[] = []
 let goal: MazeCell
@@ -252,25 +252,25 @@ class Player {
 let p = new Player(0, 0)
 
 function gameLoop() {
+
   window.addEventListener("keydown", (e) => {
-    if (e.key === 'w' || e.key === 'W') {
+    if (e.key === 'w' || e.key === 'ArrowUp') {
       p.move(Directions.T)
     }
 
-    if (e.key === 's' || e.key === 'S') {
+    if (e.key === 's' || e.key === 'ArrowDown') {
       p.move(Directions.B)
     }
 
-    if (e.key === 'a' || e.key === 'A') {
+    if (e.key === 'a' || e.key === 'ArrowLeft') {
       p.move(Directions.L)
     }
 
-    if (e.key === 'd' || e.key === 'D') {
+    if (e.key === 'd' || e.key === 'ArrowRight') {
       p.move(Directions.R)
     }
 
     if (e.key === 'r') {
-      console.log('rrr')
       p.restart()
     }
 
