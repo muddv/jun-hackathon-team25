@@ -4,8 +4,8 @@ console.log(canvas)
 export const ctx = canvas.getContext('2d')!
 
 const size = 900
-const rows = 20
-const cols = 20
+const rows = 10
+const cols = 10
 const grid: MazeCell[][] = []
 const stack: MazeCell[] = []
 let goal: MazeCell
