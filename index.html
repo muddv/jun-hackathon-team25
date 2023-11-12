@@ -1,15 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/normalize.css" />
-    <link rel="stylesheet" href="./src/style.css" />
-    <script type="module" src="/src/main.js" defer></script>
-    <title>Hello</title>
-  </head>
-  <body id="app">
-    <canvas width="820px" height="820px" id="hehe"></canvas>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name=”viewport” content=”width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0″ /> -->
+    <link rel="stylesheet" href="/src/styles.css">
+    <script type="module" src="/src/main.ts" defer></script>
+
+
+    <title>Document</title>
+</head>
+
+<body>
+  <nav>
+    <section class="title">Лабиринтус</section>
+
+    <div class="rules-modal">
+      <details>
+          <summary>Правила</summary>
+          <div class="cmc">
+              <div class="cmt">
+                <h2>Правила игры:</h2>
+                <p>В этой игре вам нужно помочь родителю найти путь к своему ребенку.</p>
+                <p>Выберите уровень сложности и используйте клавиши <br> &#8678; &#8679; &#8681; &#8680; на своей клавиатуре,
+                чтобы перемещаться по лабиринту.</p>
+              </div>
+          </div>
+      </details>
+  </div>
+
+  </nav>
+
+
+<div class="levels">
+
+<button class="game-level">Легко</button>
+<button class="game-level">Нормально</button>
+<button class="game-level">Тяжело</button>
+
+</div>
+
+  <div class="game-placeholder">
+    <canvas id="game-window"></canvas>
+  </div>
+
+  <div>
+    <button class="start-over">Начать заново</button>
+  </div>
+
+
+  <footer class="footer">
+    <p class="credits">Этот сайт был разработан <a href="#">@Мишей</a>, <a href="#">@Катей</a> и <a href="#">@Ильёй</a> на
+    <a href="https://jun-hackaton-landing.vercel.app">
+    благотворительном хакатоне для джуниоров</a> от
+    <a href="https://t.me/natti_jun_front_chat">чата джунов Наташи Давыдовой</a>
+    и <a href="">НКО "Найди семью"</a>
+  </p>
+
+
+</footer>
+
+</body>
 </html>

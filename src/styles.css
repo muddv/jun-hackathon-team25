@@ -1,17 +1,17 @@
 @font-face {
   font-family: 'Amatic_SC';
-  src: url(fonts/Amatic_SC/AmaticSC-Regular.ttf);
+  src: url(/public/fonts/Amatic_SC/AmaticSC-Regular.ttf);
 }
 
 @font-face {
   font-family: 'Amatic_SC';
-  src: url(fonts/Amatic_SC/AmaticSC-Bold.ttf);
+  src: url(/public/fonts/Amatic_SC/AmaticSC-Bold.ttf);
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'Kablammo';
-  src: url(fonts/Kablammo/Kablammo-Regular-VariableFont_MORF.ttf);
+  src: url(/public/fonts/Kablammo/Kablammo-Regular-VariableFont_MORF.ttf);
 }
 
 
