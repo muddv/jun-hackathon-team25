@@ -48,7 +48,7 @@ flex-shrink: 0;
 flex-wrap: wrap;
 
 text-shadow: 1px 1px 2px black;
-
+cursor: default;
 }
 
 
@@ -181,6 +181,8 @@ a:focus, a:hover {
   transition-duration: 0.4s;
 
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+  cursor: pointer;
 }
 
 
@@ -215,6 +217,8 @@ a:focus, a:hover {
   transition-duration: 0.4s;
 
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+  cursor: pointer;
 }
 
 .game-level:hover,
