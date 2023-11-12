@@ -1,7 +1,7 @@
 const canvas = document.querySelector<HTMLCanvasElement>("#can")!
 canvas.style.background = "black"
 console.log(canvas)
-const ctx = canvas.getContext('2d')!
+export const ctx = canvas.getContext('2d')!
 
 const size = 600
 const rows = 50
@@ -11,6 +11,7 @@ const stack: MazeCell[] = []
 
 const markedColor = "#FF00F0"
 const cellColor = "#00FF00"
+const playerColor = "#FF0000"
 
 class MazeCell {
   constructor(x: number, y: number) {
@@ -18,8 +19,11 @@ class MazeCell {
     this.y = y
     this.visited = false
     this.walls = { T: true, B: true, L: true, R: true }
+    this.color =  markedColor
+    this.isPlayer = false
+    this.isGoal = false
   }
-  x; y; visited; walls
+  x; y; visited; walls; color; isPlayer; isGoal
 
   draw() {
     let x = (this.x * size) / cols
@@ -85,7 +89,7 @@ class MazeCell {
     const markedSize = size / cols
     let row = this.x * size / cols + 1
     let col = this.y * size / cols + 1
-    ctx.fillStyle = markedColor
+    ctx.fillStyle = this.color
     ctx.fillRect(row, col, markedSize, markedSize)
   }
 
@@ -106,8 +110,8 @@ class MazeCell {
       neigbor.walls.B = false
     }
     else if (yDif === -1) {
-      this.walls.T = false
-      neigbor.walls.B = false
+      this.walls.B = false
+      neigbor.walls.T = false
     }
   }
 }
@@ -163,4 +167,87 @@ function getRandomInt(max: number) {
 
 generateGrid()
 traverseGrid()
+
+enum Directions  {T, B, R, L}
+type Vector2 = {
+  x: number
+  y: number
+}
+
+class Player {
+  constructor(x: number, y: number)  {
+    this.x = x
+    this.y = y
+    this.color = playerColor
+    this.cell = grid[this.x][this.y]
+    this.draw()
+  }
+  x; y; color; cell 
+  
+  draw() {
+    this.cell.color = this.color 
+    this.cell.draw()
+  }
+
+  move(direction: Directions) {
+    let movement: Vector2 = {x: 0, y: 0}
+    switch(direction) {
+      case(Directions.T):
+        if (!this.cell.walls.T && this.cell.y > 0) {
+          movement.y--
+        }
+        break
+      case(Directions.B):
+        if (!this.cell.walls.B && this.cell.y < cols) {
+          movement.y++
+        }
+        break
+      case(Directions.R):
+        if (!this.cell.walls.R && this.cell.x < rows) {
+          movement.x++
+        }
+        break
+      case(Directions.L):
+        if (!this.cell.walls.L && this.cell.x > 0) {
+          movement.x--
+        }
+        break
+      default: 
+        console.log('def')
+    }
+    this.x += movement.x
+    this.y += movement.y
+
+    this.cell = grid[this.x][this.y]
+    this.cell.isPlayer == true
+    this.draw()
+  }
+}
+
+let p = new Player(0, 0)
+
+function gameLoop() {
+  window.addEventListener("keydown", (e) => {
+    if (e.key === 'w' || e.key === 'W') {
+      p.move(Directions.T)
+    }
+
+    if (e.key === 's' || e.key === 'S') {
+      p.move(Directions.B)
+    }
+
+    if (e.key === 'a' || e.key === 'A') {
+      p.move(Directions.L)
+    }
+
+    if (e.key === 'd' || e.key === 'D') {
+      p.move(Directions.R)
+    }
+
+  })
+  let quit = false 
+  // while (!quit){ }
+}
+
+gameLoop()
 
